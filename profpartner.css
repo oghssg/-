@@ -222,3 +222,29 @@ body:has(dialog[open]){overflow:hidden}
  .btn:hover,.product:hover,.product:hover .productpic img,.product:hover .vessel,.btn:active{transform:none}
  .steps li::after{transform:none}
 }
+
+.intro .hero-offer {
+  width: fit-content;
+  max-width: min(100%, 36ch);
+  padding: 10px 15px;
+  border-inline-start: 3px solid var(--orange);
+  background: #f6f9fb;
+  color: var(--blue);
+  font-weight: 550;
+}
+
+.hero-offer strong {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+#catalog + #documents {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(36px, 5vw, 66px);
+}
+
+@media (max-width: 620px) {
+  .intro .hero-offer {
+    padding: 9px 12px;
+  }
+}
