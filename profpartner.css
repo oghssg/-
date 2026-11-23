@@ -311,3 +311,130 @@ body:has(dialog[open]){overflow:hidden}
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+/* Оранжевые акценты на светлом и синем фоне. */
+:root {
+  --orange-ink: #9a3e09;
+  --orange-on-blue: #ffac62;
+  --action-ink: #402108;
+}
+
+.benefits {
+  background: var(--blue);
+  color: #fff;
+}
+
+.benefits .four article { border-color: #ffffff33; }
+.benefits .four h3 { color: #fff; }
+.benefits .four svg { stroke: var(--orange-on-blue); }
+
+.steps svg { color: var(--orange-ink); }
+.aud-grid .aud-title svg {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--orange-on-blue);
+}
+.aud-grid li svg {
+  width: 22px;
+  height: 22px;
+  color: var(--orange-on-blue);
+}
+#documents .chemistry-ornament { color: var(--orange-on-blue); }
+#process .chemistry-ornament { color: var(--orange-ink); }
+
+.btn:not([disabled]),
+button:is(.menu, .mobile-call, .close):not([disabled]) {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--action-ink);
+}
+
+.btn:not([disabled]):hover,
+button:is(.menu, .mobile-call, .close):not([disabled]):hover {
+  background: #ffab62;
+}
+
+input { accent-color: var(--orange-ink); }
+
+/* Две широкие карточки в ряду, одна на телефоне. */
+.cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 30px);
+}
+
+.cards .product {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 14px;
+}
+
+.cards .productpic {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2.35 / 1;
+  border-radius: 13px 13px 0 0;
+}
+
+.cards .productpic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardbody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(16px, 2.4vw, 30px);
+}
+
+.cardbody h3 {
+  color: var(--orange-ink);
+  margin: 0 0 15px;
+  font-size: clamp(21px, 2.4vw, 31px);
+  line-height: 1.18;
+  letter-spacing: -.025em;
+}
+
+.product-facts {
+  margin: 0 0 19px;
+  border-top: 1px solid #e6edf2;
+  font-size: 14px;
+}
+
+.product-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 10ch) 1fr;
+  align-items: baseline;
+  gap: 8px 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid #e6edf2;
+}
+
+.product-facts dt { color: #526476; }
+.product-facts dd { margin: 0; color: var(--blue); font-weight: 650; }
+.cardbody .btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.cards .placeholder .drawing {
+  aspect-ratio: 3.35 / 1;
+  background: #eef3f6;
+}
+
+.cards .placeholder .vessel {
+  width: auto;
+  height: 92%;
+}
+
+@media (max-width: 680px) {
+  .cards { grid-template-columns: minmax(0, 1fr); }
+  .cards .productpic { aspect-ratio: 2.15 / 1; }
+  .cardbody .btn { align-self: stretch; }
+}

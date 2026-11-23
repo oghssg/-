@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Оптовые поставки химического сырья · Профпартнер</title><meta name="description" content="Оптовые поставки отечественного и импортного химического сырья по России и СНГ. Запрос цены и пробного образца."><link rel="icon" href="site/assets/favicon.svg"><link rel="stylesheet" href="profpartner.css?v=3"><script defer src="profpartner.js?v=3"></script>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Оптовые поставки химического сырья · Профпартнер</title><meta name="description" content="Оптовые поставки отечественного и импортного химического сырья по России и СНГ. Запрос цены и пробного образца."><link rel="icon" href="site/assets/favicon.svg"><link rel="stylesheet" href="profpartner.css?v=4"><script defer src="profpartner.js?v=3"></script>
 <!-- ГЕОГРАФИЯ: начало подключения стилей для вставки в <head>. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.3.2/css/flag-icons.min.css">
@@ -51,12 +51,14 @@
       padding: 6px 6px 8px;
     }
 
-    .supply-geography .geo-flag-row.is-expanded .geo-rail {
-      overflow-x: auto;
-      overscroll-behavior-inline: contain;
-      scrollbar-width: thin;
-      scrollbar-color: #859db3 transparent;
+    .supply-geography .geo-flag-row.is-expanded {
+      display: grid;
+      justify-items: center;
+      max-inline-size: 720px;
     }
+
+    .supply-geography .is-expanded .geo-rail { width: 100%; }
+    .supply-geography .is-expanded .geo-toggle { grid-row: 1; }
 
     .supply-geography .geo-flags {
       display: flex;
@@ -76,8 +78,7 @@
 
     .supply-geography .geo-flag-item:last-child { margin-inline-end: 0; }
 
-    .supply-geography .geo-flag-item[hidden],
-    .supply-geography .geo-swipe-hint[hidden] { display: none; }
+    .supply-geography .geo-flag-item[hidden] { display: none; }
 
     .supply-geography .geo-disc,
     .supply-geography .geo-toggle {
@@ -98,29 +99,49 @@
 
     .supply-geography .geo-flag-label { display: none; }
 
-    .supply-geography .is-expanded .geo-flags { gap: 6px; }
+    .supply-geography .is-expanded .geo-flags {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      inline-size: 100%;
+      gap: 10px;
+    }
+
+    @media (max-width: 520px) {
+      .supply-geography .is-expanded .geo-flags {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
 
     .supply-geography .is-expanded .geo-flag-item {
-      flex: 0 0 68px;
+      grid-template-columns: 34px minmax(0, 1fr);
+      justify-items: start;
+      align-items: center;
+      gap: 9px;
       margin: 0;
+      padding: 10px;
+      border: 1px solid var(--geo-border);
+      border-radius: 9px;
+      background: white;
     }
 
     .supply-geography .is-expanded .geo-disc {
-      inline-size: 50px;
-      block-size: 50px;
+      inline-size: 34px;
+      block-size: 34px;
+      border-width: 2px;
     }
 
     .supply-geography .is-expanded .geo-flag-label {
       display: block;
       color: var(--geo-primary);
-      font-size: 10px;
-      white-space: nowrap;
+      font-size: 13px;
+      text-align: start;
+      overflow-wrap: anywhere;
     }
 
     .supply-geography .geo-toggle {
       flex-shrink: 0;
-      background: var(--geo-primary);
-      color: #fff;
+      background: var(--geo-accent);
+      color: #402108;
       font: 750 clamp(17px, 3vw, 21px)/1 Inter, system-ui, sans-serif;
       font-variant-numeric: tabular-nums;
       cursor: pointer;
@@ -133,11 +154,6 @@
     .supply-geography .geo-rail:focus-visible {
       outline: 3px solid var(--geo-accent);
       outline-offset: 2px;
-    }
-
-    .supply-geography .geo-swipe-hint {
-      margin: 0;
-      font-size: 13px;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -163,7 +179,7 @@
     }
 
     @keyframes geography-enter {
-      from { opacity: 0; transform: translate(12px, 8px); }
+      from { opacity: 0; transform: translateY(8px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -294,17 +310,41 @@
   <circle cx="7" cy="18" r="2" />
 </svg><h3>Доставка по РФ и СНГ</h3></article></div></section>
 <section id="catalog" class="pale"><div class="wrap"><h2>Каталог сырья</h2><div class="cards">
-<article class="product " data-group="Соединения цинка"><div class="productpic"><img loading="lazy" src="site/assets/zinc.webp" alt="Белое сырьё в лабораторной посуде"></div><div class="cardbody"><small>Химическое сырьё</small><h3>Рицинолеат цинка</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product " data-group="Соединения цинка"><div class="productpic"><img loading="lazy" src="site/assets/zinc.webp" alt="Белое сырьё в лабораторной посуде"></div><div class="cardbody"><h3>Рицинолеат цинка</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="1">Запросить цену</button></div></article>
-<article class="product " data-group="Добавки"><div class="productpic"><img loading="lazy" src="site/assets/adjuvants.webp" alt="Синяя жидкость в лабораторной посуде"></div><div class="cardbody"><small>Химическое сырьё</small><h3>Адъюванты</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product " data-group="Добавки"><div class="productpic"><img loading="lazy" src="site/assets/adjuvants.webp" alt="Синяя жидкость в лабораторной посуде"></div><div class="cardbody"><h3>Адъюванты</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="2">Запросить цену</button></div></article>
-<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><ellipse cx="88" cy="93" rx="30" ry="9"/><path d="M58 53v40c0 12 60 12 60 0V53" fill="#bed0db"/><ellipse cx="88" cy="53" rx="30" ry="9" fill="#f5f9fa"/><path d="M58 66c0 12 60 12 60 0m-60 13c0 12 60 12 60 0"/><ellipse cx="100" cy="51" rx="4" ry="1.5"/></svg></div><div class="cardbody"><small>Позиция готовится</small><h3>Ваш текст</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><ellipse cx="88" cy="93" rx="30" ry="9"/><path d="M58 53v40c0 12 60 12 60 0V53" fill="#bed0db"/><ellipse cx="88" cy="53" rx="30" ry="9" fill="#f5f9fa"/><path d="M58 66c0 12 60 12 60 0m-60 13c0 12 60 12 60 0"/><ellipse cx="100" cy="51" rx="4" ry="1.5"/></svg></div><div class="cardbody"><h3>Позиция в разработке</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="3">Запросить цену</button></div></article>
-<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m47 54 42-14 43 15-43 16Z" fill="#f5f9fa"/><path d="m47 54 42 17v34l-42-19Z" fill="#c9d8e1"/><path d="m89 71 43-16v32l-43 18Z" fill="#aabfce"/><path d="m64 48 43 16v10l6-2V62L70 46"/></svg></div><div class="cardbody"><small>Позиция готовится</small><h3>Ваш текст</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m47 54 42-14 43 15-43 16Z" fill="#f5f9fa"/><path d="m47 54 42 17v34l-42-19Z" fill="#c9d8e1"/><path d="m89 71 43-16v32l-43 18Z" fill="#aabfce"/><path d="m64 48 43 16v10l6-2V62L70 46"/></svg></div><div class="cardbody"><h3>Позиция в разработке</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="4">Запросить цену</button></div></article>
-<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m56 56 39-13 28 12v40l-39 14-28-14Z" fill="#cadbe4"/><path d="m56 56 28 12 39-13m-39 13v41M58 72l26 11 37-13m-63 14 26 10 37-13M69 63v35m28-34v37m13-42v37"/><path d="m76 50 11-4 8 4-11 4Z" fill="#f5f9fa"/></svg></div><div class="cardbody"><small>Позиция готовится</small><h3>Ваш текст</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m56 56 39-13 28 12v40l-39 14-28-14Z" fill="#cadbe4"/><path d="m56 56 28 12 39-13m-39 13v41M58 72l26 11 37-13m-63 14 26 10 37-13M69 63v35m28-34v37m13-42v37"/><path d="m76 50 11-4 8 4-11 4Z" fill="#f5f9fa"/></svg></div><div class="cardbody"><h3>Позиция в разработке</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="5">Запросить цену</button></div></article>
-<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m52 78 46-16 31 12-47 18Z" fill="#f5f9fa"/><path d="m52 78 30 14 47-18v7l-47 18-30-14Z" fill="#b0c7d5"/><path d="m54 90 28 13 46-18v5l-46 18-28-13Z" fill="#cadbe4"/><path d="m65 58 30-11 21 9-30 11Z" fill="#f5f9fa"/><path d="m65 58 21 9 30-11v19L86 87l-21-10Z" fill="#c4d5df"/><path d="M86 67v20"/></svg></div><div class="cardbody"><small>Позиция готовится</small><h3>Ваш текст</h3><p>Применение уточняйте у менеджера<br>Фасовка · от 1 л/кг</p><small>Характеристики (PDF) готовятся</small>
+<article class="product placeholder" data-group="В разработке"><div class="productpic drawing"><svg class="vessel" viewBox="0 0 180 140" fill="none" stroke="#54738a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="m31 99 54 22 62-22M34 106l48 20m41-14 24-8" stroke="#b6cbd8"/><path d="m52 78 46-16 31 12-47 18Z" fill="#f5f9fa"/><path d="m52 78 30 14 47-18v7l-47 18-30-14Z" fill="#b0c7d5"/><path d="m54 90 28 13 46-18v5l-46 18-28-13Z" fill="#cadbe4"/><path d="m65 58 30-11 21 9-30 11Z" fill="#f5f9fa"/><path d="m65 58 21 9 30-11v19L86 87l-21-10Z" fill="#c4d5df"/><path d="M86 67v20"/></svg></div><div class="cardbody"><h3>Позиция в разработке</h3><dl class="product-facts">
+    <div><dt>Фасовка</dt><dd>от 1 л/кг</dd></div>
+    <div><dt>Применение</dt><dd>Уточняйте у менеджера</dd></div>
+    <div><dt>Документы</dt><dd>PDF готовится</dd></div>
+  </dl>
 <button type="button" class="btn light" data-request data-product="6">Запросить цену</button></div></article></div><a class="btn navy" href="catalog.html" >Весь каталог</a></div></section>
 <section id="documents"><svg class="chemistry-ornament" viewBox="0 0 155 75" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="m16 41 24-14 24 14v27m0-27 24-14 23 14 27-16m-50 2V9m23 32v20"/><circle cx="16" cy="41" r="4"/><circle cx="40" cy="27" r="4"/><circle cx="88" cy="9" r="4"/><circle cx="138" cy="25" r="4"/><circle cx="111" cy="61" r="4"/></svg><div class="wrap"><h2>Документы и сертификаты</h2><div class="split">
 <article class="doc"><div class="paper">PDF<i></i><i></i><i></i></div><div><h3>Характеристики сырья</h3><p>Файл ожидается</p>
@@ -396,7 +436,6 @@
       <button class="geo-toggle" type="button" aria-expanded="false" aria-controls="geography-countries"
         style="--geo-order: 3" aria-label="Показать все 14 стран">+11</button>
     </div>
-    <p class="geo-swipe-hint" hidden>Листайте, чтобы увидеть все флаги</p>
   </section>
   <script>
     (() => {
@@ -434,7 +473,6 @@
       const rail = section.querySelector('.geo-rail');
       const list = section.querySelector('.geo-flags');
       const button = section.querySelector('.geo-toggle');
-      const swipeHint = section.querySelector('.geo-swipe-hint');
       const motion = matchMedia('(prefers-reduced-motion: reduce)');
 
       const items = orderedCountries.map(([code, name], index) => {
@@ -459,9 +497,6 @@
 
       let expanded = false;
       let hasAppeared = false;
-      function updateHint() {
-        swipeHint.hidden = !expanded || rail.scrollWidth <= rail.clientWidth + 1;
-      }
 
       function setExpanded(open) {
         expanded = open;
@@ -473,8 +508,6 @@
         if (open) rail.tabIndex = 0;
         else rail.removeAttribute('tabindex');
         items.forEach((item, index) => { item.hidden = !open && index >= featuredCountries.length; });
-        rail.scrollLeft = 0;
-        updateHint();
       }
 
       setExpanded(false);
@@ -490,7 +523,6 @@
         if (rail.contains(document.activeElement)) button.focus({preventScroll: true});
         setExpanded(false);
       });
-      window.addEventListener('resize', updateHint);
 
       if ('IntersectionObserver' in window && !motion.matches) {
         const observer = new IntersectionObserver(entries => {
