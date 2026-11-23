@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 34">
+  <rect width="70" height="34" rx="5" fill="#e4eef7"/>
+  <path fill="none" stroke="#7996b0" d="M5 10V5h6m48 0h6v5M5 24v5h6m48 0h6v-5"/>
+  <text x="35" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#23517d">Логотип</text>
+</svg>
