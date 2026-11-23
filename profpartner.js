@@ -65,11 +65,13 @@ form.addEventListener('submit', event => {
     fields.phone.reportValidity();
     return;
   }
+  const comment = fields.comment?.value.trim();
   const lines = ['Заявка в «Профпартнер»', fields.product.value && 'Сырьё: ' + fields.product.value,
     fields.amount.value && 'Количество: ' + fields.amount.value + ' ' + fields.unit.value,
     'Пробный образец: ' + (fields.sample.checked ? 'да' : 'нет'),
     'Имя: ' + fields.name.value.trim(), 'Телефон: ' + phone,
-    'Ответить: ' + (fields.email.disabled ? 'в мессенджер' : fields.email.value)];
+    'Ответить: ' + (fields.email.disabled ? 'в мессенджер' : fields.email.value),
+    comment && 'Комментарий: ' + comment];
   const url = URL.createObjectURL(new Blob(['\uFEFF' + lines.filter(Boolean).join('\n')],{type:'text/plain;charset=utf-8'}));
   const link = document.createElement('a');
   link.href = url; link.download = 'Профпартнер-заявка.txt';
@@ -110,4 +112,15 @@ if ('IntersectionObserver' in window && !reduced.matches) {
     el.style.setProperty('--lag', [...el.parentElement.children].indexOf(el) * 65 + 'ms');
     observer.observe(el);
   });
+}
+
+if ('IntersectionObserver' in window && !reduced.matches) {
+  const headings = new IntersectionObserver(entries => {
+    for (const {target, isIntersecting} of entries) {
+      if (!isIntersecting) continue;
+      target.classList.add('section-heading-in');
+      headings.unobserve(target);
+    }
+  }, {threshold:.2});
+  document.querySelectorAll('main section h2, footer h2').forEach(heading => headings.observe(heading));
 }

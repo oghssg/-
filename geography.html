@@ -43,189 +43,140 @@
     }
 
     .supply-geography .geo-flag-row {
-      --geo-disc-size: clamp(50px, 8vw, 68px);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 26px auto 22px;
+      gap: clamp(9px, 1.5vw, 18px);
+      max-inline-size: 1160px;
+      min-block-size: 104px;
+      margin: 23px auto 0;
     }
 
-    .supply-geography .geo-featured {
-      position: relative;
+    .supply-geography .geo-rail {
+      min-inline-size: 0;
+      padding: 6px 6px 8px;
+    }
+
+    .supply-geography .geo-flag-row.is-expanded .geo-rail {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #859db3 transparent;
+    }
+
+    .supply-geography .geo-flags {
       display: flex;
-      flex: 0 0 var(--geo-disc-size);
-      margin-inline-end: -10px;
-      transition: transform 200ms var(--geo-ease);
+      align-items: flex-start;
+      inline-size: max-content;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .supply-geography .geo-flag-item {
+      display: grid;
+      justify-items: center;
+      gap: 6px;
+      margin-inline-end: -9px;
+    }
+
+    .supply-geography .geo-flag-item:last-child { margin-inline-end: 0; }
+
+    .supply-geography .geo-flag-item[hidden],
+    .supply-geography .geo-swipe-hint[hidden] { display: none; }
+
+    .supply-geography .geo-disc,
+    .supply-geography .geo-toggle {
+      display: grid;
+      place-items: center;
+      inline-size: clamp(50px, 8vw, 66px);
+      block-size: clamp(50px, 8vw, 66px);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 4px 9px #12355b23;
     }
 
     .supply-geography .geo-disc {
-      display: block;
-      flex-shrink: 0;
-      inline-size: var(--geo-disc-size);
-      block-size: var(--geo-disc-size);
-      border-radius: 50%;
       background-color: #dce6ee;
       background-size: cover;
-    }
-
-    .supply-geography .geo-featured .geo-disc {
-      border: 3px solid #fff;
-      box-shadow: 0 4px 12px #12355b23;
-    }
-
-    .supply-geography .geo-badge {
-      display: grid;
-      place-items: center;
-      flex: 0 0 var(--geo-disc-size);
-      block-size: var(--geo-disc-size);
-      margin-inline-start: 16px;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      background: var(--geo-primary);
-      color: #fff;
-      box-shadow: 0 4px 12px #12355b23;
-      font-size: clamp(17px, 3vw, 21px);
-      font-weight: 750;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .supply-geography .geo-tooltip {
-      position: absolute;
-      z-index: 2;
-      inset-block-end: calc(100% + 7px);
-      inset-inline-start: 50%;
-      padding: 5px 9px;
-      border-radius: 5px;
-      background: var(--geo-primary);
-      color: #fff;
-      font-size: 13px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transform: translate(-50%, 3px);
-      transition: opacity 160ms ease, transform 160ms var(--geo-ease);
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .supply-geography .geo-featured:hover {
-        z-index: 3;
-        transform: translateY(-3px) scale(1.08);
-      }
-      .supply-geography .geo-featured:hover .geo-tooltip {
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
-    }
-
-    .supply-geography .geo-disclosure { position: relative; }
-
-    .supply-geography .geo-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      min-block-size: 44px;
-      padding: 9px 17px;
-      border: 1px solid var(--geo-primary);
-      border-radius: 6px;
-      background: white;
-      color: var(--geo-primary);
-      font: 650 15px/1.4 Inter, system-ui, sans-serif;
-      cursor: pointer;
-    }
-
-    .supply-geography .geo-toggle:focus-visible,
-    .supply-geography .geo-panel:focus-visible {
-      outline: 3px solid var(--geo-accent);
-      outline-offset: 3px;
-    }
-
-    .supply-geography .geo-arrow {
-      display: block;
       transition: transform 200ms var(--geo-ease);
     }
 
-    .supply-geography .geo-toggle[aria-expanded="true"] .geo-arrow {
-      transform: rotate(180deg);
-    }
+    .supply-geography .geo-flag-label { display: none; }
 
-    .supply-geography .geo-panel {
-      position: absolute;
-      z-index: 7;
-      inset-block-start: calc(100% + 9px);
-      inset-inline: 0;
-      inline-size: min(320px, 100%);
-      max-block-size: min(280px, 44dvh);
-      margin-inline: auto;
-      overflow-y: auto;
-      overscroll-behavior-y: contain;
-      border: 1px solid var(--geo-border);
-      border-radius: 11px;
-      background: #fff;
-      box-shadow: 0 10px 30px #12355b25;
-      text-align: start;
-    }
+    .supply-geography .is-expanded .geo-flags { gap: 6px; }
 
-    .supply-geography .geo-panel[hidden] { display: none; }
-
-    .supply-geography .geo-total {
-      position: sticky;
-      inset-block-start: 0;
-      z-index: 1;
+    .supply-geography .is-expanded .geo-flag-item {
+      flex: 0 0 68px;
       margin: 0;
-      padding: 11px 14px;
-      border-block-end: 1px solid var(--geo-border);
-      background: #fff;
-      color: var(--geo-primary);
-      font-size: 14px;
-      font-weight: 700;
     }
 
-    .supply-geography .geo-list {
-      list-style: none;
+    .supply-geography .is-expanded .geo-disc {
+      inline-size: 50px;
+      block-size: 50px;
+    }
+
+    .supply-geography .is-expanded .geo-flag-label {
+      display: block;
+      color: var(--geo-primary);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .supply-geography .geo-toggle {
+      flex-shrink: 0;
+      background: var(--geo-primary);
+      color: #fff;
+      font: 750 clamp(17px, 3vw, 21px)/1 Inter, system-ui, sans-serif;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+      transition: transform 200ms var(--geo-ease);
+    }
+
+    .supply-geography .geo-toggle[aria-expanded="true"] { font-size: 27px; }
+
+    .supply-geography .geo-toggle:focus-visible,
+    .supply-geography .geo-rail:focus-visible {
+      outline: 3px solid var(--geo-accent);
+      outline-offset: 2px;
+    }
+
+    .supply-geography .geo-swipe-hint {
       margin: 0;
-      padding: 5px 14px 7px;
+      font-size: 13px;
     }
 
-    .supply-geography .geo-list li {
-      --geo-disc-size: 25px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-block-size: 37px;
-      padding: 4px 0;
-      color: var(--geo-primary);
-      font-size: 15px;
-    }
-
-    .supply-geography .geo-list li + li { border-top: 1px solid var(--geo-border); }
-    .supply-geography .geo-list .geo-disc { border: 1px solid #12355b25; }
-
-    @media (max-width: 480px) {
-      .supply-geography .geo-panel { inline-size: 100%; }
+    @media (hover: hover) and (pointer: fine) {
+      .supply-geography .geo-disc:hover {
+        position: relative;
+        z-index: 1;
+        transform: translateY(-3px) scale(1.06);
+      }
+      .supply-geography .geo-toggle:hover { transform: translateY(-3px); }
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      .supply-geography .geo-panel:not([hidden]) {
-        animation: geography-enter 200ms var(--geo-ease) both;
+      .supply-geography .geo-arrived:not(.is-expanded) .geo-flag-item,
+      .supply-geography .geo-arrived:not(.is-expanded) .geo-toggle {
+        animation: geography-enter 380ms var(--geo-ease) backwards;
+        animation-delay: calc(var(--geo-order) * 95ms);
       }
-      .supply-geography .geo-arrived .geo-featured,
-      .supply-geography .geo-arrived .geo-badge {
-        animation: geography-enter 330ms var(--geo-ease) backwards;
-        animation-delay: calc(var(--geo-order) * 100ms);
+
+      .supply-geography .is-expanded .geo-flag-item {
+        animation: geography-enter 440ms var(--geo-ease) backwards;
+        animation-delay: calc(var(--geo-order) * 28ms);
       }
     }
 
     @keyframes geography-enter {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translate(12px, 8px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .supply-geography .geo-featured,
-      .supply-geography .geo-arrow,
-      .supply-geography .geo-tooltip {
-        transition: none;
-      }
-      .supply-geography .geo-featured:hover { transform: none; }
+      .supply-geography .geo-disc,
+      .supply-geography .geo-toggle { transition: none; }
+      .supply-geography .geo-disc:hover,
+      .supply-geography .geo-toggle:hover { transform: none; }
     }
   </style>
   <!-- ГЕОГРАФИЯ: конец подключения стилей. -->
@@ -238,134 +189,115 @@
     <p class="geo-subtitle">Ваш текст</p>
 
     <div class="geo-flag-row">
-      <div class="geo-featured" style="--geo-order: 0">
-        <span class="fi fi-ru fis geo-disc" role="img" aria-label="Россия"></span>
-        <span class="geo-tooltip" aria-hidden="true">Россия</span>
+      <div class="geo-rail" id="geography-countries" role="region" aria-label="Флаги стран поставки">
+        <ul class="geo-flags" role="list"></ul>
       </div>
-      <div class="geo-featured" style="--geo-order: 1">
-        <span class="fi fi-kz fis geo-disc" role="img" aria-label="Казахстан"></span>
-        <span class="geo-tooltip" aria-hidden="true">Казахстан</span>
-      </div>
-      <div class="geo-featured" style="--geo-order: 2">
-        <span class="fi fi-by fis geo-disc" role="img" aria-label="Беларусь"></span>
-        <span class="geo-tooltip" aria-hidden="true">Беларусь</span>
-      </div>
-      <span class="geo-badge" style="--geo-order: 3" role="img" aria-label="Ещё 12 стран">
-        <span aria-hidden="true">+12</span>
-      </span>
+      <button class="geo-toggle" type="button" aria-expanded="false" aria-controls="geography-countries"
+        style="--geo-order: 3" aria-label="Показать все 14 стран">+11</button>
     </div>
-
-    <div class="geo-disclosure">
-      <button class="geo-toggle" type="button" aria-expanded="false" aria-controls="geography-countries">
-        <span>Все страны</span>
-        <svg class="geo-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m6 9 6 6 6-6"/>
-        </svg>
-      </button>
-      <div class="geo-panel" id="geography-countries" role="region" aria-labelledby="geography-total" tabindex="0" hidden>
-        <p class="geo-total" id="geography-total">Всего стран: 15</p>
-        <ul class="geo-list" role="list"></ul>
-      </div>
-    </div>
+    <p class="geo-swipe-hint" hidden>Листайте, чтобы увидеть все флаги</p>
   </section>
   <script>
     (() => {
-      // В кавычках можно менять заголовок, подзаголовок и подпись кнопки.
-      // Каждая строка списка содержит код флага и название страны.
-      const config = {
-        title: 'Доставка по России и странам СНГ',
-        subtitle: 'Ваш текст',
-        buttonLabel: 'Все страны',
-        countries: [
-          ['az', 'Азербайджан'],
-          ['am', 'Армения'],
-          ['by', 'Беларусь'],
-          ['ge', 'Грузия'],
-          ['kz', 'Казахстан'],
-          ['kg', 'Киргизия'],
-          ['lv', 'Латвия'],
-          ['lt', 'Литва'],
-          ['md', 'Молдова'],
-          ['ru', 'Россия'],
-          ['tj', 'Таджикистан'],
-          ['tm', 'Туркменистан'],
-          ['uz', 'Узбекистан'],
-          ['ua', 'Украина'],
-          ['ee', 'Эстония'],
-        ],
-      };
+      // Здесь редактируются названия стран, коды флагов и первые три флага.
+      const featured = ['ru', 'kz', 'by'];
+      const countries = [
+        ['az', 'Азербайджан'],
+        ['am', 'Армения'],
+        ['by', 'Беларусь'],
+        ['ge', 'Грузия'],
+        ['kz', 'Казахстан'],
+        ['kg', 'Киргизия'],
+        ['lv', 'Латвия'],
+        ['lt', 'Литва'],
+        ['md', 'Молдова'],
+        ['ru', 'Россия'],
+        ['tj', 'Таджикистан'],
+        ['tm', 'Туркменистан'],
+        ['uz', 'Узбекистан'],
+        ['ee', 'Эстония'],
+      ];
+      const names = new Map(countries);
+      const featuredCountries = featured.filter(code => names.has(code));
+      const alphabet = new Intl.Collator('ru');
+      const remainingCountries = countries
+        .filter(([code]) => !featuredCountries.includes(code))
+        .sort((a, b) => alphabet.compare(a[1], b[1]));
+      const orderedCountries = [
+        ...featuredCountries.map(code => [code, names.get(code)]),
+        ...remainingCountries,
+      ];
 
       const section = document.getElementById('geography');
       const row = section.querySelector('.geo-flag-row');
-      const badge = section.querySelector('.geo-badge span');
-      const control = section.querySelector('.geo-disclosure');
-      const button = control.querySelector('.geo-toggle');
-      const panel = control.querySelector('.geo-panel');
-      const list = panel.querySelector('.geo-list');
+      const rail = section.querySelector('.geo-rail');
+      const list = section.querySelector('.geo-flags');
+      const button = section.querySelector('.geo-toggle');
+      const swipeHint = section.querySelector('.geo-swipe-hint');
       const motion = matchMedia('(prefers-reduced-motion: reduce)');
 
-      section.querySelector('.geo-title').textContent = config.title;
-      section.querySelector('.geo-subtitle').textContent = config.subtitle;
-      button.querySelector('span').textContent = config.buttonLabel;
-
-      const russianAlphabet = new Intl.Collator('ru');
-      const sortedCountries = [...config.countries].sort((a, b) => russianAlphabet.compare(a[1], b[1]));
-      for (const [code, name] of sortedCountries) {
+      const items = orderedCountries.map(([code, name], index) => {
         const item = document.createElement('li');
+        item.className = 'geo-flag-item';
+        item.style.setProperty('--geo-order', index);
+
         const flag = document.createElement('span');
         flag.className = 'fi fi-' + code + ' fis geo-disc';
-        // Название рядом с флагом уже озвучивается. Дублировать его не нужно.
-        flag.setAttribute('aria-hidden', 'true');
-        item.append(flag, document.createTextNode(name));
+        flag.title = name;
+        flag.setAttribute('role', 'img');
+        flag.setAttribute('aria-label', name);
+
+        const caption = document.createElement('span');
+        caption.className = 'geo-flag-label';
+        caption.setAttribute('aria-hidden', 'true');
+        caption.textContent = name;
+        item.append(flag, caption);
         list.append(item);
-      }
-
-      function setOpen(open) {
-        panel.hidden = !open;
-        button.setAttribute('aria-expanded', String(open));
-        if (open) panel.scrollTop = 0;
-      }
-
-      button.addEventListener('click', () => setOpen(panel.hidden));
-      document.addEventListener('click', event => {
-        if (!panel.hidden && !control.contains(event.target)) setOpen(false);
+        return item;
       });
-      control.addEventListener('focusout', event => {
-        if (!panel.hidden && event.relatedTarget && !control.contains(event.relatedTarget)) setOpen(false);
+
+      let expanded = false;
+      let hasAppeared = false;
+      function updateHint() {
+        swipeHint.hidden = !expanded || rail.scrollWidth <= rail.clientWidth + 1;
+      }
+
+      function setExpanded(open) {
+        expanded = open;
+        row.classList.toggle('is-expanded', open);
+        row.classList.toggle('geo-arrived', hasAppeared && !open);
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Свернуть флаги' : 'Показать все ' + countries.length + ' стран');
+        button.textContent = open ? '×' : '+' + remainingCountries.length;
+        if (open) rail.tabIndex = 0;
+        else rail.removeAttribute('tabindex');
+        items.forEach((item, index) => { item.hidden = !open && index >= featuredCountries.length; });
+        rail.scrollLeft = 0;
+        updateHint();
+      }
+
+      setExpanded(false);
+      button.addEventListener('click', event => {
+        setExpanded(!expanded);
+        if (expanded && event.detail === 0) rail.focus({preventScroll: true});
+      });
+      document.addEventListener('click', event => {
+        if (expanded && !section.contains(event.target)) setExpanded(false);
       });
       document.addEventListener('keydown', event => {
-        if (event.key !== 'Escape' || panel.hidden) return;
-        event.preventDefault();
-        button.focus({preventScroll: true});
-        setOpen(false);
+        if (event.key !== 'Escape' || !expanded) return;
+        if (rail.contains(document.activeElement)) button.focus({preventScroll: true});
+        setExpanded(false);
       });
-
-      // +12 — фиксированное число. Скрипт меняет только кадры его появления.
-      function animateBadge() {
-        const starts = performance.now() + 300;
-        const duration = 640;
-        function update(time) {
-          const progress = Math.max(0, Math.min(1, (time - starts) / duration));
-          if (motion.matches || progress === 1) {
-            badge.textContent = '+12';
-            return;
-          }
-          badge.textContent = '+' + Math.floor(12 * (1 - (1 - progress) ** 3));
-          requestAnimationFrame(update);
-        }
-        badge.textContent = '+0';
-        requestAnimationFrame(update);
-      }
+      window.addEventListener('resize', updateHint);
 
       if ('IntersectionObserver' in window && !motion.matches) {
         const observer = new IntersectionObserver(entries => {
           if (!entries.some(entry => entry.isIntersecting)) return;
           observer.disconnect();
-          if (motion.matches) return;
-          row.classList.add('geo-arrived');
-          animateBadge();
-        }, {threshold: .65});
+          hasAppeared = true;
+          if (!expanded) row.classList.add('geo-arrived');
+        }, {threshold: .55});
         observer.observe(row);
       }
     })();
