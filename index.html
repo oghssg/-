@@ -1,4 +1,229 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Оптовые поставки химического сырья · Профпартнер</title><meta name="description" content="Оптовые поставки отечественного и импортного химического сырья по России и СНГ. Запрос цены и пробного образца."><link rel="icon" href="site/assets/favicon.svg"><link rel="stylesheet" href="profpartner.css?v=2"><script defer src="profpartner.js"></script></head><body><a class="skip" href="#main">К содержанию</a>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Оптовые поставки химического сырья · Профпартнер</title><meta name="description" content="Оптовые поставки отечественного и импортного химического сырья по России и СНГ. Запрос цены и пробного образца."><link rel="icon" href="site/assets/favicon.svg"><link rel="stylesheet" href="profpartner.css?v=2"><script defer src="profpartner.js"></script>
+<!-- ГЕОГРАФИЯ: начало подключения стилей для вставки в <head>. -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.3.2/css/flag-icons.min.css">
+  <style>
+    .supply-geography {
+      /* Цвета блока. Меняйте значения после двоеточий. */
+      --geo-primary: #12355b;
+      --geo-accent: #f28c28;
+      --geo-background: #f3f6f9;
+      --geo-text: #526476;
+      --geo-border: #d7e1e9;
+      --geo-ease: cubic-bezier(.23, 1, .32, 1);
+      position: relative;
+      padding: clamp(44px, 6vw, 84px) 16px;
+      border-block-start: 1px solid var(--geo-border);
+      background: var(--geo-background);
+      color: var(--geo-text);
+      text-align: center;
+      font: 400 16px/1.5 Inter, system-ui, sans-serif;
+    }
+
+    .supply-geography, .supply-geography * { box-sizing: border-box; }
+
+    .supply-geography .geo-title {
+      max-inline-size: 24ch;
+      margin: 0 auto;
+      color: var(--geo-primary);
+      font: 800 clamp(29px, 4.15vw, 54px)/1.12 Inter, system-ui, sans-serif;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .supply-geography .geo-subtitle {
+      margin: 12px auto 0;
+      max-inline-size: 48ch;
+    }
+
+    .supply-geography .geo-flag-row {
+      --geo-disc-size: clamp(50px, 8vw, 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 26px auto 22px;
+    }
+
+    .supply-geography .geo-featured {
+      position: relative;
+      display: flex;
+      flex: 0 0 var(--geo-disc-size);
+      margin-inline-end: -10px;
+      transition: transform 200ms var(--geo-ease);
+    }
+
+    .supply-geography .geo-disc {
+      display: block;
+      flex-shrink: 0;
+      inline-size: var(--geo-disc-size);
+      block-size: var(--geo-disc-size);
+      border-radius: 50%;
+      background-color: #dce6ee;
+      background-size: cover;
+    }
+
+    .supply-geography .geo-featured .geo-disc {
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px #12355b23;
+    }
+
+    .supply-geography .geo-badge {
+      display: grid;
+      place-items: center;
+      flex: 0 0 var(--geo-disc-size);
+      block-size: var(--geo-disc-size);
+      margin-inline-start: 16px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: var(--geo-primary);
+      color: #fff;
+      box-shadow: 0 4px 12px #12355b23;
+      font-size: clamp(17px, 3vw, 21px);
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .supply-geography .geo-tooltip {
+      position: absolute;
+      z-index: 2;
+      inset-block-end: calc(100% + 7px);
+      inset-inline-start: 50%;
+      padding: 5px 9px;
+      border-radius: 5px;
+      background: var(--geo-primary);
+      color: #fff;
+      font-size: 13px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 3px);
+      transition: opacity 160ms ease, transform 160ms var(--geo-ease);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .supply-geography .geo-featured:hover {
+        z-index: 3;
+        transform: translateY(-3px) scale(1.08);
+      }
+      .supply-geography .geo-featured:hover .geo-tooltip {
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+    }
+
+    .supply-geography .geo-disclosure { position: relative; }
+
+    .supply-geography .geo-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-block-size: 44px;
+      padding: 9px 17px;
+      border: 1px solid var(--geo-primary);
+      border-radius: 6px;
+      background: white;
+      color: var(--geo-primary);
+      font: 650 15px/1.4 Inter, system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .supply-geography .geo-toggle:focus-visible,
+    .supply-geography .geo-panel:focus-visible {
+      outline: 3px solid var(--geo-accent);
+      outline-offset: 3px;
+    }
+
+    .supply-geography .geo-arrow {
+      display: block;
+      transition: transform 200ms var(--geo-ease);
+    }
+
+    .supply-geography .geo-toggle[aria-expanded="true"] .geo-arrow {
+      transform: rotate(180deg);
+    }
+
+    .supply-geography .geo-panel {
+      position: absolute;
+      z-index: 7;
+      inset-block-start: calc(100% + 9px);
+      inset-inline: 0;
+      inline-size: min(320px, 100%);
+      max-block-size: min(280px, 44dvh);
+      margin-inline: auto;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+      border: 1px solid var(--geo-border);
+      border-radius: 11px;
+      background: #fff;
+      box-shadow: 0 10px 30px #12355b25;
+      text-align: start;
+    }
+
+    .supply-geography .geo-panel[hidden] { display: none; }
+
+    .supply-geography .geo-total {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 1;
+      margin: 0;
+      padding: 11px 14px;
+      border-block-end: 1px solid var(--geo-border);
+      background: #fff;
+      color: var(--geo-primary);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .supply-geography .geo-list {
+      list-style: none;
+      margin: 0;
+      padding: 5px 14px 7px;
+    }
+
+    .supply-geography .geo-list li {
+      --geo-disc-size: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-block-size: 37px;
+      padding: 4px 0;
+      color: var(--geo-primary);
+      font-size: 15px;
+    }
+
+    .supply-geography .geo-list li + li { border-top: 1px solid var(--geo-border); }
+    .supply-geography .geo-list .geo-disc { border: 1px solid #12355b25; }
+
+    @media (max-width: 480px) {
+      .supply-geography .geo-panel { inline-size: 100%; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .supply-geography .geo-panel:not([hidden]) {
+        animation: geography-enter 200ms var(--geo-ease) both;
+      }
+      .supply-geography .geo-arrived .geo-featured,
+      .supply-geography .geo-arrived .geo-badge {
+        animation: geography-enter 330ms var(--geo-ease) backwards;
+        animation-delay: calc(var(--geo-order) * 100ms);
+      }
+    }
+
+    @keyframes geography-enter {
+      from { opacity: 0; transform: translateY(8px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .supply-geography .geo-featured,
+      .supply-geography .geo-arrow,
+      .supply-geography .geo-tooltip {
+        transition: none;
+      }
+      .supply-geography .geo-featured:hover { transform: none; }
+    }
+  </style>
+  <!-- ГЕОГРАФИЯ: конец подключения стилей. -->
+</head><body><a class="skip" href="#main">К содержанию</a>
 <header><div class="wrap top"><a class="brand" href="index.html"><img src="site/assets/logo-placeholder.svg" width="63" height="31" alt="Логотип"><strong>Профпартнер</strong></a>
 <nav><a href="#catalog">Продукция</a><a href="#about">О компании</a><a href="#documents">Документы</a><a href="#contacts">Контакты</a></nav><div class="tel"><small>Телефон</small>Ваш текст</div>
 <button class="mobile-call" data-call aria-label="Позвонить"><svg aria-hidden="true" focusable="false"   class="lucide lucide-phone"
@@ -208,6 +433,145 @@
   <line x1="12" x2="12" y1="22" y2="12" />
 </svg>
 <h3>Договор и поставка</h3><p>Согласуем фасовку, адрес и отгрузку.</p></li></ol></div></section>
+<!-- ГЕОГРАФИЯ: начало блока для вставки в <body>. -->
+  <section class="supply-geography" id="geography" aria-labelledby="geography-title">
+    <h2 class="geo-title" id="geography-title">Доставка по России и странам СНГ</h2>
+    <p class="geo-subtitle">Ваш текст</p>
+
+    <div class="geo-flag-row">
+      <div class="geo-featured" style="--geo-order: 0">
+        <span class="fi fi-ru fis geo-disc" role="img" aria-label="Россия"></span>
+        <span class="geo-tooltip" aria-hidden="true">Россия</span>
+      </div>
+      <div class="geo-featured" style="--geo-order: 1">
+        <span class="fi fi-kz fis geo-disc" role="img" aria-label="Казахстан"></span>
+        <span class="geo-tooltip" aria-hidden="true">Казахстан</span>
+      </div>
+      <div class="geo-featured" style="--geo-order: 2">
+        <span class="fi fi-by fis geo-disc" role="img" aria-label="Беларусь"></span>
+        <span class="geo-tooltip" aria-hidden="true">Беларусь</span>
+      </div>
+      <span class="geo-badge" style="--geo-order: 3" role="img" aria-label="Ещё 12 стран">
+        <span aria-hidden="true">+12</span>
+      </span>
+    </div>
+
+    <div class="geo-disclosure">
+      <button class="geo-toggle" type="button" aria-expanded="false" aria-controls="geography-countries">
+        <span>Все страны</span>
+        <svg class="geo-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </button>
+      <div class="geo-panel" id="geography-countries" role="region" aria-labelledby="geography-total" tabindex="0" hidden>
+        <p class="geo-total" id="geography-total">Всего стран: 15</p>
+        <ul class="geo-list" role="list"></ul>
+      </div>
+    </div>
+  </section>
+  <script>
+    (() => {
+      // В кавычках можно менять заголовок, подзаголовок и подпись кнопки.
+      // Каждая строка списка содержит код флага и название страны.
+      const config = {
+        title: 'Доставка по России и странам СНГ',
+        subtitle: 'Ваш текст',
+        buttonLabel: 'Все страны',
+        countries: [
+          ['az', 'Азербайджан'],
+          ['am', 'Армения'],
+          ['by', 'Беларусь'],
+          ['ge', 'Грузия'],
+          ['kz', 'Казахстан'],
+          ['kg', 'Киргизия'],
+          ['lv', 'Латвия'],
+          ['lt', 'Литва'],
+          ['md', 'Молдова'],
+          ['ru', 'Россия'],
+          ['tj', 'Таджикистан'],
+          ['tm', 'Туркменистан'],
+          ['uz', 'Узбекистан'],
+          ['ua', 'Украина'],
+          ['ee', 'Эстония'],
+        ],
+      };
+
+      const section = document.getElementById('geography');
+      const row = section.querySelector('.geo-flag-row');
+      const badge = section.querySelector('.geo-badge span');
+      const control = section.querySelector('.geo-disclosure');
+      const button = control.querySelector('.geo-toggle');
+      const panel = control.querySelector('.geo-panel');
+      const list = panel.querySelector('.geo-list');
+      const motion = matchMedia('(prefers-reduced-motion: reduce)');
+
+      section.querySelector('.geo-title').textContent = config.title;
+      section.querySelector('.geo-subtitle').textContent = config.subtitle;
+      button.querySelector('span').textContent = config.buttonLabel;
+
+      const russianAlphabet = new Intl.Collator('ru');
+      const sortedCountries = [...config.countries].sort((a, b) => russianAlphabet.compare(a[1], b[1]));
+      for (const [code, name] of sortedCountries) {
+        const item = document.createElement('li');
+        const flag = document.createElement('span');
+        flag.className = 'fi fi-' + code + ' fis geo-disc';
+        // Название рядом с флагом уже озвучивается. Дублировать его не нужно.
+        flag.setAttribute('aria-hidden', 'true');
+        item.append(flag, document.createTextNode(name));
+        list.append(item);
+      }
+
+      function setOpen(open) {
+        panel.hidden = !open;
+        button.setAttribute('aria-expanded', String(open));
+        if (open) panel.scrollTop = 0;
+      }
+
+      button.addEventListener('click', () => setOpen(panel.hidden));
+      document.addEventListener('click', event => {
+        if (!panel.hidden && !control.contains(event.target)) setOpen(false);
+      });
+      control.addEventListener('focusout', event => {
+        if (!panel.hidden && event.relatedTarget && !control.contains(event.relatedTarget)) setOpen(false);
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || panel.hidden) return;
+        event.preventDefault();
+        button.focus({preventScroll: true});
+        setOpen(false);
+      });
+
+      // +12 — фиксированное число. Скрипт меняет только кадры его появления.
+      function animateBadge() {
+        const starts = performance.now() + 300;
+        const duration = 640;
+        function update(time) {
+          const progress = Math.max(0, Math.min(1, (time - starts) / duration));
+          if (motion.matches || progress === 1) {
+            badge.textContent = '+12';
+            return;
+          }
+          badge.textContent = '+' + Math.floor(12 * (1 - (1 - progress) ** 3));
+          requestAnimationFrame(update);
+        }
+        badge.textContent = '+0';
+        requestAnimationFrame(update);
+      }
+
+      if ('IntersectionObserver' in window && !motion.matches) {
+        const observer = new IntersectionObserver(entries => {
+          if (!entries.some(entry => entry.isIntersecting)) return;
+          observer.disconnect();
+          if (motion.matches) return;
+          row.classList.add('geo-arrived');
+          animateBadge();
+        }, {threshold: .65});
+        observer.observe(row);
+      }
+    })();
+  </script>
+  <!-- ГЕОГРАФИЯ: конец блока. -->
 <section id="audience" class="dark"><div class="wrap"><h2>Для кого</h2><div class="aud-grid">
 <article><div class="aud-title"><svg aria-hidden="true" focusable="false"   class="lucide lucide-factory"
   xmlns="http://www.w3.org/2000/svg"
